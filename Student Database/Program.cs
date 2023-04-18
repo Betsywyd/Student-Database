@@ -79,11 +79,11 @@ namespace Student_Database
             if (enter == "num")
             {
 
-                PickCategoryNum(arr1, arr2, arr3, PickNum(arr1));
+                PickCategory(arr1, arr2, arr3, PickNum(arr1));
             }
             else if (enter == "name")
             {
-                PickCategoryName(arr1, arr2, arr3, FindNameIndex(arr1));
+                PickCategory(arr1, arr2, arr3, FindNameIndex(arr1)+1);
             }
             else
             {
@@ -110,8 +110,9 @@ namespace Student_Database
 
         
 
-        public static void PickCategoryNum(string[] arr1, string[] arr2, string[] arr3 ,int num)
+        public static void PickCategory(string[] arr1, string[] arr2, string[] arr3 ,int num)
         {
+            if(num>=1) { 
             Console.Write($"Student {num} is {arr1[num - 1]}.");
             bool s = true;
             do
@@ -138,37 +139,14 @@ namespace Student_Database
                 }
             } while (s == true);
         }
-
-        public static void PickCategoryName(string[] arr1, string[] arr2, string[] arr3, int i)
-        {
-            Console.Write($"{arr1[i]}'s number is {i+1}.");
-            bool s = true;
-            do
+            else
             {
-                Console.WriteLine("What would you like to know? Enter \"hometown\" or \"favorite food\"");
-                string enter = Console.ReadLine().ToLower().Trim();
+                Console.WriteLine("This student isn't in this class,let's try again!");
+                PickCategory(arr1, arr2, arr3, FindNameIndex(arr1) + 1);
 
-                if (enter == "hometown" || enter == "town" || enter == "home")
-                {
-                    Console.WriteLine($"{arr1[i]} is from {arr2[i]}. ");
-                    s = false;
-                }
-                else if (enter == "favorite food" || enter == "favorite" || enter == "food")
-                {
-                    Console.WriteLine($"{arr1[i]}'s favorite food is {arr3[i]}. ");
-                    s = false;
-                
-                }
-                else
-                {
-                    Console.WriteLine("That category does not exist.,Let's try again.");
-                    s = true;
-                    continue;
+            }
 
-                }
-            } while (s == true);
-        }
-
+      }
 
 
         public static bool AskNameList()
